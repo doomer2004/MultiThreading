@@ -13,6 +13,26 @@ public class Ball {
     private int dx = 2;
     private int dy = 2;
 
+    private Color color;
+    private boolean isStopped = false;
+
+    public void stopBall() {
+        isStopped = true;
+    }
+
+    public void runBall() {
+        isStopped = false;
+    }
+
+    public boolean isStopped() {
+        return isStopped;
+    }
+
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public Ball(Component c){
         this.canvas = c;
 
@@ -30,29 +50,31 @@ public class Ball {
         int a = 0;
     }
 
-    public void draw (Graphics2D g2){
-        g2.setColor(Color.darkGray);
-        g2.fill(new Ellipse2D.Double(x,y,XSIZE,YSIZE));
+    public void draw(Graphics2D g2) {
+        if (color == Color.black) g2.setColor(Color.black);
+        if (color == Color.red) g2.setColor(Color.red);
+        g2.fill(new Ellipse2D.Double(x, y, XSIZE, YSIZE));
 
     }
 
-    public void move(){
-        x+=dx;
-        y+=dy;
-        if(x<0){
+    public void move() {
+        if(isStopped) return;
+        x += dx;
+        y += dy;
+        if (x < 0) {
             x = 0;
             dx = -dx;
         }
-        if(x+XSIZE>=this.canvas.getWidth()){
-            x = this.canvas.getWidth()-XSIZE;
+        if (x + XSIZE >= this.canvas.getWidth()) {
+            x = this.canvas.getWidth() - XSIZE;
             dx = -dx;
         }
-        if(y<0){
-            y=0;
+        if (y < 0) {
+            y = 0;
             dy = -dy;
         }
-        if(y+YSIZE>=this.canvas.getHeight()){
-            y = this.canvas.getHeight()-YSIZE;
+        if (y + YSIZE >= this.canvas.getHeight()) {
+            y = this.canvas.getHeight() - YSIZE;
             dy = -dy;
         }
         this.canvas.repaint();
