@@ -9,6 +9,9 @@ public class BounceFrame extends JFrame {
     private BallCanvas canvas;
     public static final int WIDTH = 450;
     public static final int HEIGHT = 350;
+
+    private static final int BLUE_PRIORITY = 1;
+    private static final int RED_PRIORITY = 10;
     public BounceFrame() {
         this.setSize(WIDTH, HEIGHT);
         this.setTitle("Bounce programm");
@@ -19,17 +22,37 @@ public class BounceFrame extends JFrame {
         content.add(this.canvas, BorderLayout.CENTER);
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(Color.lightGray);
-        JButton buttonStart = new JButton("Start");
+        JButton startBlue = new JButton("Add 500 Blue");
+        JButton startRed = new JButton("Add Red");
         JButton buttonStop = new JButton("Stop");
-        buttonStart.addActionListener(new ActionListener() {
+        startBlue.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for (int i = 0; i < 500; i++) {
+                    Ball b = new Ball(canvas);
+                    b.setColor(Color.blue);
+                    canvas.add(b);
+
+                    BallThread thread = new BallThread(b, BLUE_PRIORITY);
+                    thread.start();
+                    System.out.println("Thread name = " +
+                            thread.getName());
+                }
+
+            }
+        });
+        startRed.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 Ball b = new Ball(canvas);
+                b.setColor(Color.red);
                 canvas.add(b);
 
-                BallThread thread = new BallThread(b);
+                BallThread thread = new BallThread(b, RED_PRIORITY);
                 thread.start();
                 System.out.println("Thread name = " +
                         thread.getName());
@@ -42,8 +65,8 @@ public class BounceFrame extends JFrame {
                 System.exit(0);
             }
         });
-
-        buttonPanel.add(buttonStart);
+        buttonPanel.add(startBlue);
+        buttonPanel.add(startRed);
         buttonPanel.add(buttonStop);
 
         content.add(buttonPanel, BorderLayout.SOUTH);

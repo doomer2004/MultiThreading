@@ -2,9 +2,13 @@ package Tasks.Task1;
 
 public class BallThread extends Thread {
     private Ball b;
-
     public BallThread(Ball ball){
         b = ball;
+    }
+
+    public BallThread(Ball ball, int priority){
+        b = ball;
+        this.setPriority(priority);
     }
     @Override
     public void run(){
@@ -16,6 +20,6 @@ public class BallThread extends Thread {
                 Thread.sleep(5);
 
             }
-        } catch(InterruptedException ex){ }
+        } catch(InterruptedException ignored){ }
     }
 }

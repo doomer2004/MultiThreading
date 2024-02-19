@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
 
+
 public class Ball {
     private Component canvas;
     private static final int XSIZE = 20;
@@ -13,17 +14,16 @@ public class Ball {
     private int dx = 2;
     private int dy = 2;
 
+    private Color color;
+
     public Ball(Component c){
         this.canvas = c;
+        x = this.canvas.getWidth()/2;
+        y = this.canvas.getHeight()/2;
+    }
 
-
-        if(Math.random()<0.5){
-            x = new Random().nextInt(this.canvas.getWidth());
-            y = 0;
-        }else{
-            x = 0;
-            y = new Random().nextInt(this.canvas.getHeight());
-        }
+    public void setColor(Color c){
+        this.color = c;
     }
 
     public static void f(){
@@ -31,9 +31,9 @@ public class Ball {
     }
 
     public void draw (Graphics2D g2){
-        g2.setColor(Color.darkGray);
-        g2.fill(new Ellipse2D.Double(x,y,XSIZE,YSIZE));
-
+        if (color == Color.blue) g2.setColor(Color.blue);
+        if (color == Color.red) g2.setColor(Color.red);
+        g2.fill(new Ellipse2D.Double(x, y, XSIZE, YSIZE));
     }
 
     public void move(){
