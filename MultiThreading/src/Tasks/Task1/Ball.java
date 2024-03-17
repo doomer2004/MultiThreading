@@ -1,7 +1,5 @@
-package lab1.task2;
+package Tasks.Task1;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -9,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Getter
-@Setter
+
 class Ball {
     private Component canvas;
     private static final int XSIZE = 20;
@@ -21,6 +18,9 @@ class Ball {
     private int dy = 2;
 
     private boolean isInPocket = false;
+    public boolean getIsInPocket() {
+        return isInPocket;
+    }
     private final List<Pocket> pockets;
 
     public List<Pocket> getPockets() {
@@ -47,10 +47,6 @@ class Ball {
             y = new Random().nextInt(this.canvas.getHeight());
         }
     }
-
-/*    public static void f() { // ?
-        int a = 0;
-    }*/
 
     public void draw(Graphics2D g2) {
         g2.setColor(Color.darkGray);

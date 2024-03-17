@@ -1,4 +1,4 @@
-package lab1.task2;
+package Tasks.Task1;
 
 public class BallThread extends Thread {
     private Ball b;
@@ -11,7 +11,7 @@ public class BallThread extends Thread {
     public void run() {
         try {
             for (int i = 1; i < 10000; i++) {
-                if (b.isInPocket()) {
+                if (b.getIsInPocket()) {
 //                    this.interrupt();
                     return;
                 }

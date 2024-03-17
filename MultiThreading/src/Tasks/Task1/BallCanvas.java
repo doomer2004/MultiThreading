@@ -1,7 +1,4 @@
-package lab1.task2;
-
-import lombok.Getter;
-import lombok.Setter;
+package Tasks.Task1;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,12 +25,12 @@ public class BallCanvas extends JPanel {
         pockets = generatePockets();
         paintPockets(g2);
         for (Ball ball : balls) {
-            if (ball.isInPocket()) {
+            if (ball.getIsInPocket()) {
                 droppedCounter++;
             }
         }
         droppedCounterLabel.setText("Dropped balls: " + droppedCounter);
-        balls.removeIf(ball -> ball.isInPocket());
+        balls.removeIf(ball -> ball.getIsInPocket());
         for (Ball b : balls) {
             b.draw(g2);
         }
