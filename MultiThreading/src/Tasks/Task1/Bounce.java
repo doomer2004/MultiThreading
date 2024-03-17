@@ -1,4 +1,4 @@
-package Tasks.Task1;
+package lab1.task2;
 
 import javax.swing.*;
 
@@ -13,4 +13,3 @@ public class Bounce {
 
     }
 }
-
